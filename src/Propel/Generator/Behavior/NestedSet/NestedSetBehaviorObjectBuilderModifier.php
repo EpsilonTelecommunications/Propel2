@@ -640,10 +640,10 @@ public function hasParent(): bool
  * Warning: this does not move the current object in the tree.
  * Use moveTofirstChildOf() or moveToLastChildOf() for that purpose
  *
- * @param $objectClassName \$parent
+ * @param $objectClassName|null \$parent
  * @return \$this The current object, for fluid interface
  */
-public function setParent($objectClassName \$parent = null)
+public function setParent(?$objectClassName \$parent = null)
 {
     \$this->aNestedSetParent = \$parent;
 

@@ -295,7 +295,7 @@ public function childrenOf($this->objectClassName $objectName)
  * The result does not include the object passed as parameter.
  *
  * @param {$this->objectClassName} $objectName The object to use for sibling search
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  *
  * @return \$this The current query, for fluid interface
  */
@@ -460,11 +460,11 @@ public function orderByLevel(\$reverse = false)
         }
 
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  *
  * @return {$this->objectClassName} The tree root object
  */
-public function findRoot(" . ($useScope ? '$scope = null, ' : '') . "ConnectionInterface \$con = null)
+public function findRoot(" . ($useScope ? '$scope = null, ' : '') . "?ConnectionInterface \$con = null)
 {
     return \$this
         ->addUsingAlias({$this->objectClassName}::LEFT_COL, 1, Criteria::EQUAL)";
@@ -489,7 +489,7 @@ public function findRoot(" . ($useScope ? '$scope = null, ' : '') . "ConnectionI
 /**
  * Returns the root objects for all trees.
  *
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  *
  * @return {$this->objectClassName}[]|ObjectCollection|mixed the list of results, formatted by the current formatter
  */
@@ -520,11 +520,11 @@ public function findRoots(?ConnectionInterface \$con = null)
         }
 
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  *
  * @return {$this->objectClassName}[]|ObjectCollection|mixed the list of results, formatted by the current formatter
  */
-public function findTree(" . ($useScope ? '$scope = null, ' : '') . "ConnectionInterface \$con = null)
+public function findTree(" . ($useScope ? '$scope = null, ' : '') . "?ConnectionInterface \$con = null)
 {
     return \$this";
         if ($useScope) {
@@ -554,7 +554,7 @@ public function findTree(" . ($useScope ? '$scope = null, ' : '') . "ConnectionI
  * Returns the root nodes for the tree
  *
  * @param Criteria \$criteria    Optional Criteria to filter the query
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  * @return {$this->objectClassName}[]|ObjectCollection|mixed the list of results, formatted by the current formatter
  */
 static public function retrieveRoots(?Criteria \$criteria = null, ?ConnectionInterface \$con = null)
@@ -590,10 +590,10 @@ static public function retrieveRoots(?Criteria \$criteria = null, ?ConnectionInt
  * @param int \$scope        Scope to determine which root node to return";
         }
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  * @return {$this->objectClassName}            Propel object for root node
  */
-static public function retrieveRoot(" . ($useScope ? '$scope = null, ' : '') . "ConnectionInterface \$con = null)
+static public function retrieveRoot(" . ($useScope ? '$scope = null, ' : '') . "?ConnectionInterface \$con = null)
 {
     \$c = new Criteria($tableMapClassName::DATABASE_NAME);
     \$c->add($objectClassName::LEFT_COL, 1, Criteria::EQUAL);";
@@ -629,11 +629,11 @@ static public function retrieveRoot(" . ($useScope ? '$scope = null, ' : '') . "
  * @param int \$scope        Scope to determine which root node to return";
         }
         $script .= "
- * @param Criteria \$criteria    Optional Criteria to filter the query
- * @param ConnectionInterface \$con Connection to use.
+ * @param Criteria|null \$criteria    Optional Criteria to filter the query
+ * @param ConnectionInterface|null \$con Connection to use.
  * @return {$this->objectClassName}[]|ObjectCollection|mixed the list of results, formatted by the current formatter
  */
-static public function retrieveTree(" . ($useScope ? '$scope = null, ' : '') . "Criteria \$criteria = null, ?ConnectionInterface \$con = null)
+static public function retrieveTree(" . ($useScope ? '$scope = null, ' : '') . "?Criteria \$criteria = null, ?ConnectionInterface \$con = null)
 {
     if (null === \$criteria) {
         \$criteria = new Criteria($tableMapClassName::DATABASE_NAME);
@@ -663,10 +663,10 @@ static public function retrieveTree(" . ($useScope ? '$scope = null, ' : '') . "
 /**
  * Tests if node is valid
  *
- * @param $objectClassName \$node    Propel object for src node
+ * @param $objectClassName|null \$node    Propel object for src node
  * @return bool
  */
-static public function isValid($objectClassName \$node = null)
+static public function isValid(?$objectClassName \$node = null)
 {
     if (is_object(\$node) && \$node->getRightValue() > \$node->getLeftValue()) {
         return true;
@@ -697,11 +697,11 @@ static public function isValid($objectClassName \$node = null)
  * @param int \$scope        Scope to determine which tree to delete";
         }
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  *
  * @return int The number of deleted nodes
  */
-static public function deleteTree(" . ($useScope ? '$scope = null, ' : '') . "ConnectionInterface \$con = null)
+static public function deleteTree(" . ($useScope ? '$scope = null, ' : '') . "?ConnectionInterface \$con = null)
 {";
         if ($useScope) {
             $script .= "
@@ -745,7 +745,7 @@ static public function deleteTree(" . ($useScope ? '$scope = null, ' : '') . "Co
  * @param int \$scope               Scope to use for the shift";
         }
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  */
 static public function shiftRLValues(\$delta, \$first, \$last = null" . ($useScope ? ', $scope = null' : '') . ", ?ConnectionInterface \$con = null)
 {
@@ -818,7 +818,7 @@ static public function shiftRLValues(\$delta, \$first, \$last = null" . ($useSco
  * @param int \$scope        Scope to use for the shift";
         }
         $script .= "
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  */
 static public function shiftLevel(\$delta, \$first, \$last" . ($useScope ? ', $scope = null' : '') . ", ?ConnectionInterface \$con = null)
 {
@@ -859,7 +859,7 @@ static public function shiftLevel(\$delta, \$first, \$last" . ($useScope ? ', $s
  * Reload all already loaded nodes to sync them with updated db
  *
  * @param $objectClassName \$prune Object to prune from the update
- * @param ConnectionInterface \$con Connection to use.
+ * @param ConnectionInterface|null \$con Connection to use.
  */
 static public function updateLoadedNodes(\$prune = null, ?ConnectionInterface \$con = null)
 {

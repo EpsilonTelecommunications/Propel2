@@ -338,11 +338,11 @@ protected \$delegatedFields = [
  *
  * @param string \$column A string representing the column phpName, e.g. 'AuthorId'
  * @param mixed \$value A value for the condition
- * @param string \$comparison What to use for the column comparison, defaults to Criteria::EQUAL and Criteria::IN for queries
+ * @param string|null \$comparison What to use for the column comparison, defaults to Criteria::EQUAL and Criteria::IN for queries
  *
  * @return \$this The current object, for fluid interface
  */
-public function filterBy(string \$column, \$value, string \$comparison = null)
+public function filterBy(string \$column, \$value, ?string \$comparison = null)
 {
     if (isset(\$this->delegatedFields[\$column])) {
         \$methodUse = \"use{\$this->delegatedFields[\$column]}Query\";

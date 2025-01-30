@@ -1672,7 +1672,7 @@ class QueryBuilder extends AbstractOMBuilder
      */
     public function with{$relationName}Query(
         callable \$callable,
-        string \$relationAlias = null,
+        ?string \$relationAlias = null,
         ?string \$joinType = {$joinType}
     ) {
         \$relatedQuery = \$this->use{$relationName}Query(
@@ -1710,11 +1710,11 @@ class QueryBuilder extends AbstractOMBuilder
      * using the $crossTableName table as cross reference
      *
      * @param $fkPhpName $objectName the related object to use as filter
-     * @param string \$comparison Operator to use for the column comparison, defaults to Criteria::EQUAL and Criteria::IN for queries
+     * @param string|null \$comparison Operator to use for the column comparison, defaults to Criteria::EQUAL and Criteria::IN for queries
      *
      * @return \$this The current query, for fluid interface
      */
-    public function filterBy{$relName}($objectName, string \$comparison = null)
+    public function filterBy{$relName}($objectName, ?string \$comparison = null)
     {
         \$this
             ->use{$relationName}Query()
