@@ -83,7 +83,7 @@ class TestableAbstractCommand extends AbstractCommand
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->setName('testable-command');
