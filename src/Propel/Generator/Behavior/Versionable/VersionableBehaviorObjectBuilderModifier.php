@@ -880,10 +880,10 @@ public function compareVersions(int \$fromVersionNumber, int \$toVersionNumber, 
  * retrieve the last \$number versions.
  *
  * @param Integer \$number The number of record to return.
- * @param Criteria \$criteria The Criteria object containing modified values.
- * @param ConnectionInterface \$con The ConnectionInterface connection to use.
+ * @param Criteria \$criteria|null The Criteria object containing modified values.
+ * @param ConnectionInterface|null \$con The ConnectionInterface connection to use.
  *
- * @return PropelCollection|{$versionARClassName}[] List of {$versionARClassName} objects
+ * @return ObjectCollection|{$versionARClassName}[] List of {$versionARClassName} objects
  */
 public function getLastVersions(\$number = 10, \$criteria = null, ?ConnectionInterface \$con = null)
 {
