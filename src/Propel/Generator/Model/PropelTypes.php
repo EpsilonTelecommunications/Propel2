@@ -239,17 +239,17 @@ class PropelTypes
     /**
      * @var string
      */
-    public const REAL_NATIVE_TYPE = 'double';
+    public const REAL_NATIVE_TYPE = 'float';
 
     /**
      * @var string
      */
-    public const FLOAT_NATIVE_TYPE = 'double';
+    public const FLOAT_NATIVE_TYPE = 'float';
 
     /**
      * @var string
      */
-    public const DOUBLE_NATIVE_TYPE = 'double';
+    public const DOUBLE_NATIVE_TYPE = 'float';
 
     /**
      * @var string
@@ -304,12 +304,12 @@ class PropelTypes
     /**
      * @var string
      */
-    public const BOOLEAN_NATIVE_TYPE = 'boolean';
+    public const BOOLEAN_NATIVE_TYPE = 'bool';
 
     /**
      * @var string
      */
-    public const BOOLEAN_EMU_NATIVE_TYPE = 'boolean';
+    public const BOOLEAN_EMU_NATIVE_TYPE = 'bool';
 
     /**
      * @var string
@@ -419,7 +419,7 @@ class PropelTypes
         self::BIGINT => self::BIGINT_NATIVE_TYPE,
         self::REAL => self::REAL_NATIVE_TYPE,
         self::FLOAT => self::FLOAT_NATIVE_TYPE,
-        self::DOUBLE => self::DOUBLE_NATIVE_TYPE,
+        self::DOUBLE => self::FLOAT_NATIVE_TYPE,
         self::BINARY => self::BINARY_NATIVE_TYPE,
         self::VARBINARY => self::VARBINARY_NATIVE_TYPE,
         self::LONGVARBINARY => self::LONGVARBINARY_NATIVE_TYPE,
@@ -660,7 +660,7 @@ class PropelTypes
      */
     public static function isPhpPrimitiveType(string $phpType): bool
     {
-        return in_array($phpType, ['boolean', 'int', 'double', 'float', 'string'], true);
+        return in_array($phpType, ['bool', 'boolean', 'int', 'double', 'float', 'string'], true);
     }
 
     /**
@@ -672,7 +672,7 @@ class PropelTypes
      */
     public static function isPhpPrimitiveNumericType(string $phpType): bool
     {
-        return in_array($phpType, ['boolean', 'int', 'double', 'float'], true);
+        return in_array($phpType, ['bool', 'boolean', 'int', 'double', 'float'], true);
     }
 
     /**
