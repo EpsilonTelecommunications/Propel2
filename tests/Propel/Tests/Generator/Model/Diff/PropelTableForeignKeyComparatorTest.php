@@ -22,9 +22,9 @@ use Propel\Tests\TestCase;
  */
 class PropelTableForeignKeyComparatorTest extends TestCase
 {
-    /**
-     * @return void
-     */
+
+    private MysqlPlatform $platform;
+
     public function setUp(): void
     {
         $this->platform = new MysqlPlatform();
@@ -35,7 +35,7 @@ class PropelTableForeignKeyComparatorTest extends TestCase
     {
         $fk = ForeignKeyComparatorTest::createForeignKey($columns, $refTableName, $fkTableName);
         $fk->getTable()->getDatabase()->setPlatform($this->platform);
-        
+
         return $fk;
     }
 
@@ -102,7 +102,7 @@ class PropelTableForeignKeyComparatorTest extends TestCase
      */
     public function testCompareRemovedFks()
     {
-        
+
         $fk1 = $this->createForeignKey(['FkCol' => 'RefCol'], 'RefTable', 'FkTable');
         $t1 = $fk1->getTable();
 

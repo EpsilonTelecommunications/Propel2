@@ -23,9 +23,9 @@ use Propel\Tests\TestCase;
  */
 class DatabaseTableComparatorTest extends TestCase
 {
-    /**
-     * @return void
-     */
+
+    private MysqlPlatform $platform;
+
     public function setUp(): void
     {
         $this->platform = new MysqlPlatform();

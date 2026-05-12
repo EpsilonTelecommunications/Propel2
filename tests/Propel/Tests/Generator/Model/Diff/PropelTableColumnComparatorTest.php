@@ -22,9 +22,8 @@ use Propel\Tests\TestCase;
  */
 class PropelTableColumnComparatorTest extends TestCase
 {
-    /**
-     * @return void
-     */
+    private MysqlPlatform $platform;
+
     public function setUp(): void
     {
         $this->platform = new MysqlPlatform();
