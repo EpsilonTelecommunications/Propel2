@@ -30,7 +30,7 @@ class DataDictionaryExportCommandTest extends TestCaseFixturesDatabase
     {
         $app = new Application('Propel', Propel::VERSION);
         $command = new DataDictionaryExportCommand();
-        $app->add($command);
+        $app->addCommand($command);
 
         $testRoot = __DIR__ . '/../../../..';
         $bookstoreConfigDir = $testRoot . '/Fixtures/bookstore';
